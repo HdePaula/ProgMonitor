@@ -13,36 +13,106 @@ app = Dash('ProgMonitor') #esta puxando a estilizacao do arquivo .css dentro da 
 app.layout = Div(
     children=[
         H1('ProgMonitor'),
-        H3('CPU'),
-        P(main.getCpuName()),
-        H3('RAM'),
-        Graph(
-            config={'displayModeBar': False}, #tira o menu padrao do grafico
-            figure={
-                'data': [
-                    {
-                        'values': [main.getRamUsed(), main.getRamFree()],
-                        'labels': ['RAM em uso', 'RAM livre'],
-                        'type': 'pie'
-                    },
-                ],
-                'layout': {
-                    'title': 'Uso de RAM'
-                },
-            }
+
+        #DADOS CPU
+        Div(
+            children=[
+                H3('CPU'),
+                P(main.getCpuName()),
+                P(main.getCpuFreq()),
+                P(main.getCpuCount()),
+                Graph(
+                    config={'displayModeBar': False}, #tira o menu padrao do grafico
+                    figure={
+                        'data': [
+                            {
+                                'values': [main.getCpuUsedPercent(), (100 - main.getCpuUsedPercent())],
+                                'labels': ['CPU em uso', 'CPU'],
+                                'type': 'pie'
+                            },
+                        ],
+                        'layout': {
+                            'title': 'Uso de CPU'
+                        },
+                    }
+                ),
+            ]
         ),
-        H3('GPU'),
-        P(main.getGpuName()),
-        Graph(
-            config={'displayModeBar': False},
-            figure={
-                'data': [
-                    {'y': [main.getGpuTemp()]},
-                ],
-                'layout': {
-                    'title': 'Tamperatura GPU'
-                },
-            }
+
+        #DADOS RAM
+        Div(
+            children=[
+                H3('RAM'),
+                Graph(
+                    config={'displayModeBar': False}, #tira o menu padrao do grafico
+                    figure={
+                        'data': [
+                            {
+                                'values': [main.getRamUsed(), main.getRamFree()],
+                                'labels': ['RAM em uso', 'RAM livre'],
+                                'type': 'pie'
+                            },
+                        ],
+                        'layout': {
+                            'title': 'Uso de RAM'
+                        },
+                    }
+                ),
+            ]
+        ),
+        
+        #DADOS GPU
+        Div(
+            children=[
+                H3('GPU'),
+                P(main.getGpuName()),
+
+                Graph(
+                    config={'displayModeBar': False}, #tira o menu padrao do grafico
+                    figure={
+                        'data': [
+                            {
+                                'values': [main.getGpuUsedPercent(), (100.0 - float(main.getGpuUsedPercent()))],
+                                'labels': ['GPU em uso', 'GPU livre'],
+                                'type': 'pie'
+                            },
+                        ],
+                            'layout': {
+                            'title': 'Uso da GPU'
+                        },
+                    }
+                ),
+
+                #GPU MEMORIA
+                Graph(
+                    config={'displayModeBar': False}, #tira o menu padrao do grafico
+                    figure={
+                        'data': [
+                            {
+                                'values': [main.getGpuMemoryUsed(), (float(main.getGpuMemoryTotal()) - float(main.getGpuMemoryUsed()))],
+                                'labels': ['Memoria GPU em uso', 'Memoria GPU livre'],
+                                'type': 'pie'
+                            },
+                        ],
+                            'layout': {
+                            'title': 'Uso de Memoria GPU'
+                        },
+                    }
+                ),
+
+                #GPU TEMPERATURA
+                Graph(
+                    config={'displayModeBar': False},
+                    figure={
+                        'data': [
+                            {'y': [main.getGpuTemp()]},
+                        ],
+                        'layout': {
+                            'title': 'Tamperatura GPU'
+                        },
+                    }
+                ),
+            ]
         )
     ]
 )
