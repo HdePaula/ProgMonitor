@@ -1,0 +1,49 @@
+import main
+
+import tkinter as tk
+from tkinter import ttk
+from time import sleep
+
+
+class App(tk.Tk):
+    def __init__(self):
+        super().__init__()
+
+        self.geometry('480x800')
+        self.title('ProgMonitor')
+
+        # UI
+        paddings = {'padx': 5, 'pady': 5}
+
+        # configuracao grid
+        self.columnconfigure(0, weight=1)
+        self.columnconfigure(1, weight=2)
+        self.columnconfigure(2, weight=2)
+        self.columnconfigure(3, weight=2)
+
+        #titulo
+        titulo = ttk.Label(text = "STATUS DO PC")
+        titulo.grid(column=0, row=0, sticky=tk.W, **paddings)
+
+        #CPU
+        cpuName = ttk.Label(text = main.getCpuName())
+        cpuName.grid(column=0, row=1, sticky=tk.W, **paddings)
+        lbCpuUsed = ttk.Label(text = "Uso de CPU: ")
+        lbCpuUsed.grid(column=0, row=2, sticky=tk.W, **paddings)
+        cpuUsed = ttk.Label(text = (cpuUsing, "%"))
+        cpuUsed.grid(column=1, row=2, sticky=tk.W, **paddings)
+
+        print("funcionando")
+
+        #style
+        self.style = ttk.Style(self)
+        self.style.configure('TLabel', font=('Helvetica', 11))
+        self.style.configure('TButton', font=('Helvetica', 11))
+
+
+app = App()
+app.mainloop()
+
+
+
+#------------------------------------------

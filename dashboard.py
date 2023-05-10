@@ -117,4 +117,4 @@ app.layout = Div(
     ]
 )
 
-app.run_server(debug=True)
+app.run_server(debug=True) #http://localhost:8050/

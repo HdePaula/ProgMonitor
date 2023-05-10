@@ -27,7 +27,7 @@ def getCpuName():
     return cpu['brand_raw']
 
 def getCpuFreq():
-    return Mhz_to_Ghz(cpu_freq().current)
+    return float(Mhz_to_Ghz(cpu_freq().current))
 
 def getCpuCount():
     return cpu_count()
@@ -47,32 +47,38 @@ def getGpuTemp():
 
 def getGpuMemoryTotal():
     gpu = GPUtil.getGPUs()[0]
-    return mega_to_giga(gpu.memoryTotal)
+    return float(mega_to_giga(gpu.memoryTotal))
 
 def getGpuMemoryUsed():
     gpu = GPUtil.getGPUs()[0]
-    return mega_to_giga(gpu.memoryUsed)
+    return float(mega_to_giga(gpu.memoryUsed))
+
+def getGpuMemoryFree():
+    gpuTotal = GPUtil.getGPUs()[0]
+    gpuUsing = GPUtil.getGPUs()[0]
+    gpuFree = float(mega_to_giga(gpuTotal.memoryTotal)) - float(mega_to_giga(gpuUsing.memoryUsed))
+    return gpuFree
 
 def getGpuMemoryPercent():
     gpu = GPUtil.getGPUs()[0]
-    return memGpuPercent(gpu.memoryTotal, gpu.memoryUsed)
+    return float(memGpuPercent(gpu.memoryTotal, gpu.memoryUsed))
 
 def getGpuUsedPercent():
     gpu = GPUtil.getGPUs()[0]
-    return dec_to_percent(gpu.load)
+    return float(dec_to_percent(gpu.load))
 #-----DADOS GPU------
 
 #-----DADOS RAM------
 def getRamTotal():
-    return bytes_to_gigas(virtual_memory().total)
+    return float(bytes_to_gigas(virtual_memory().total))
 
 def getRamUsed():
-    return bytes_to_gigas(virtual_memory().used)
+    return float(bytes_to_gigas(virtual_memory().used))
 
 def getRamUsedPercent():
     return virtual_memory().percent
 
 def getRamFree():
     x = (virtual_memory().total-virtual_memory().used)
-    return f'{bytes_to_gigas(x)}'
+    return float(f'{bytes_to_gigas(x)}')
 #-----DADOS RAM------
