@@ -2,7 +2,7 @@ import main
 
 import tkinter as tk
 from tkinter import ttk
-from PIL import ImageTk, Image
+#from PIL import ImageTk, Image
 
 #taxa de atualizacao de dados
 taxaAtualizacao = 1000
@@ -91,7 +91,7 @@ ram_label.grid(row=0, column=0, columnspan=2)
 
 # criar um frame interno no segundo frame para adicionar as labels na mesma linha
 labels_frame = tk.Frame(square2_frame, bg="green")
-labels_frame.grid(row=1, column=0, columnspan=2)
+labels_frame.grid(row=1, column=0, columnspan=2, sticky="nsew")
 labels_frame.columnconfigure(0, weight=1)
 
 # adicionar a primeira label ao frame interno
