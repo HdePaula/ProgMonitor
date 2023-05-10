@@ -54,7 +54,7 @@ root.iconbitmap("image/icone.ico")
 
 # FRAME CPU--------------------------------------------------------------------
 # criar um frame para CPU
-square1_frame = tk.Frame(root, bg=color_padrao_bg, pady=5)
+square1_frame = tk.Frame(root, bg=color_padrao_bg, pady=3)
 square1_frame.grid(row=0, column=0, columnspan=2, sticky="nsew")
 square1_frame.columnconfigure(0, weight= 1) #wight=1 faz com que tudo que estra dentro se alinhe junto com o square frame
 
@@ -93,7 +93,7 @@ canvas.grid(row=2, column=0, sticky="nsew")
 
 # FRAME RAM--------------------------------------------------------------------
 # criar um frame para RAM
-square2_frame = tk.Frame(root, bg=color_padrao_bg, pady=5)
+square2_frame = tk.Frame(root, bg=color_padrao_bg, pady=3)
 square2_frame.grid(row=1, column=0, columnspan=2, sticky="nsew")
 square2_frame.columnconfigure(0, weight=1)
 
@@ -134,7 +134,7 @@ canvas.grid(row=2, column=0, sticky="nsew")
 
 # FRAME GPU--------------------------------------------------------------------
 # criar um frame para o GPU
-rectangle_frame = tk.Frame(root, bg=color_padrao_bg, pady=5)
+rectangle_frame = tk.Frame(root, bg=color_padrao_bg, pady=3)
 rectangle_frame.grid(row=2, column=0, columnspan=2, sticky="nsew")
 rectangle_frame.columnconfigure(0, weight=1)
 
