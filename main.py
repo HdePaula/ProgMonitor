@@ -56,7 +56,7 @@ def getGpuMemoryFree():
     gpuTotal = GPUtil.getGPUs()[0]
     gpuUsing = GPUtil.getGPUs()[0]
     gpuFree = float(mega_to_giga(gpuTotal.memoryTotal)) - float(mega_to_giga(gpuUsing.memoryUsed))
-    return gpuFree
+    return round(gpuFree, 1)
 
 def getGpuMemoryPercent():
     gpu = GPUtil.getGPUs()[0]
