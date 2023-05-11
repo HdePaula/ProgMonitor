@@ -1,10 +1,9 @@
-# no cmd: pip install psutill, pip install GPUtil, pip install py-cpuinfo, pip install wmi
+# no cmd: pip install psutil, pip install GPUtil, pip install py-cpuinfo, pip install wmi
 
 import GPUtil
 import cpuinfo
 
 from psutil import virtual_memory, cpu_freq, cpu_count, cpu_percent
-from time import sleep
 
 def Mhz_to_Ghz(value):
     return f'{value/1000: .2f}'
